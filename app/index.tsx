@@ -1,23 +1,49 @@
-import { ImageBackground, StyleSheet, View, Dimensions } from "react-native";
-import { StatusBar } from 'expo-status-bar';
+import { ImageBackground, StyleSheet, View, Dimensions, Text } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { BlurView } from "expo-blur";
+import { useEffect, useState } from "react";
 
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 
 export default function HomeScreen() {
+
+  const [time, setTime] = useState<string>("10:10");
+
+  function normalizeTime(time: number) {
+    return `${time < 10 ? "0" : ""}${time}`
+  }
+
+
+  useEffect(() => {
+
+    const timer = setInterval(() => {
+      const date = new Date();
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      setTime(`${normalizeTime(hours)}:${normalizeTime(minutes)}`);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+
   return (
     <ImageBackground
       source={require("@/assets/images/sleeping.webp")}
       style={styles.imageBackground}
     >
-      <StatusBar translucent={true} />
-      <View style={styles.container}></View>
-
+      <StatusBar translucent={true} style="auto" />
+      <View style={styles.container}>
+        <BlurView style={styles.timeContainer} intensity={35} >
+          <Text style={styles.time}>{time}</Text>
+        </BlurView>
+      </View>
     </ImageBackground>
-
   );
 }
+
 
 const styles = StyleSheet.create({
   imageBackground: {
@@ -27,8 +53,24 @@ const styles = StyleSheet.create({
     top: 0,
   },
   container: {
-    // width: "100%",
-    // height: "100%",
-    // flex: 1,
+    width: "100%",
+    height: "100%",
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
+    padding: 50,
+  },
+  timeContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  time: {
+    fontFamily: "MontserratBold",
+    fontSize: SCREEN_WIDTH / 8,
+    fontWeight: "bold",
+    color: "#ffffff",
+    textShadowColor: "#000000",
+    textShadowRadius: 25,
+    paddingVertical: 25,
+    paddingHorizontal: 75,
   },
 });
