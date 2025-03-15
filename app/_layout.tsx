@@ -10,7 +10,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
 
   const [loaded] = useFonts({
-    MontserratBold: require("../assets/fonts/Montserrat-Bold.ttf"),
+    MontserratBold: require("@/assets/fonts/Montserrat-Bold.ttf"),
   });
 
 

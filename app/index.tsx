@@ -1,36 +1,37 @@
-import { ImageBackground, StyleSheet, View, Dimensions, Text } from "react-native";
+import { ImageBackground, StyleSheet, View, Dimensions, Text, ImageSourcePropType } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { BlurView } from "expo-blur";
 import { useEffect, useState } from "react";
 import { backgrounds } from "@/constants/backgrounds";
 
 
+
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 
-export default function HomeScreen() {
+
+export default function HomeScreen(): JSX.Element {
 
   const [time, setTime] = useState<string>("10:10");
-  const [bgImg, setBgImg] = useState(backgrounds.sleeping);
+  const [bgImg, setBgImg] = useState<ImageSourcePropType>(backgrounds.sleeping);
 
-  function normalizeTime(time: number) {
-    return `${time < 10 ? "0" : ""}${time}`
+  function normalizeTime(time: number): string {
+    return `${time < 10 ? "0" : ""}${time}`;
   }
 
-
   useEffect(() => {
-
-    const timer = setInterval(() => {
-      const date = new Date();
-      const hours = date.getHours();
-      const minutes = date.getMinutes();
+    function updateTimeAndBackground(): void {
+      const date: Date = new Date();
+      const hours: number = date.getHours();
+      const minutes: number = date.getMinutes();
       setTime(`${normalizeTime(hours)}:${normalizeTime(minutes)}`);
-      if (hours > 18 && hours < 6) setBgImg(backgrounds.sleeping);
-      else if (hours >= 6 && hours < 7) setBgImg(backgrounds.closedDoors);
-      else if (hours >= 7 && hours < 9) setBgImg(backgrounds.openDoors);
+      if ((hours >= 18 && minutes > 30) || hours > 19 || hours < 6) setBgImg(backgrounds.sleeping);
+      else if (hours > 5 && hours < 7) setBgImg(backgrounds.closedDoors);
+      else if (hours > 6 && hours < 10) setBgImg(backgrounds.openDoors);
       else setBgImg(backgrounds.playing);
-    }, 1000);
-
+    }
+    updateTimeAndBackground();
+    const timer = setInterval(updateTimeAndBackground, 60000);
     return () => clearInterval(timer);
   }, []);
 
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
   },
   time: {
     fontFamily: "MontserratBold",
-    fontSize: SCREEN_WIDTH / 8,
+    fontSize: SCREEN_WIDTH / 10,
     fontWeight: "bold",
     color: "#ffffff",
     textShadowColor: "#000000",
