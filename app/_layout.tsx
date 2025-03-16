@@ -9,18 +9,18 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 
-  const [loaded] = useFonts({
-    MontserratBold: require("@/assets/fonts/Montserrat-Bold.ttf"),
+  const [loaded, error] = useFonts({
+    "MontserratBold": require("@/assets/fonts/Montserrat-Bold.ttf"),
   });
 
 
   useEffect(() => {
-    if (loaded) {
+    if (loaded || error) {
       SplashScreen.hideAsync();
     }
   }, [loaded]);
 
-  if (!loaded) {
+  if (!loaded && !error) {
     return null;
   }
 

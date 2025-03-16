@@ -43,7 +43,7 @@ export default function HomeScreen(): JSX.Element {
     >
       <StatusBar translucent={true} style="auto" />
       <View style={styles.container}>
-        <BlurView style={styles.timeContainer} intensity={35} >
+        <BlurView style={styles.timeContainer} intensity={50} tint="dark">
           <Text style={styles.time}>{time}</Text>
         </BlurView>
       </View>
@@ -67,17 +67,21 @@ const styles = StyleSheet.create({
     padding: 50,
   },
   timeContainer: {
+    width: SCREEN_WIDTH / 3,
+    aspectRatio: 2 / 1,
     alignItems: "center",
     justifyContent: "center",
+    overflow: "hidden",
+    borderRadius: 25,
   },
   time: {
+    width: "100%",
+    textAlign: "center",
     fontFamily: "MontserratBold",
-    fontSize: SCREEN_WIDTH / 10,
+    fontSize: SCREEN_WIDTH / 12,
     fontWeight: "bold",
     color: "#ffffff",
     textShadowColor: "#000000",
     textShadowRadius: 25,
-    paddingVertical: 25,
-    paddingHorizontal: 75,
   },
 });
