@@ -1,28 +1,23 @@
 import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import * as SplashScreen from "expo-splash-screen";
 import { Stack } from "expo-router";
 
 
 SplashScreen.preventAutoHideAsync();
 
 
-export default function RootLayout() {
+export default function RootLayout(): JSX.Element | null {
 
-  const [loaded, error] = useFonts({
-    "MontserratBold": require("@/assets/fonts/Montserrat-Bold.ttf"),
+  const [loaded]: [boolean, Error | null] = useFonts({
+    MontserratBold: require("@/assets/fonts/Montserrat-Bold.ttf")
   });
 
-
   useEffect(() => {
-    if (loaded || error) {
-      SplashScreen.hideAsync();
-    }
+    if (loaded) SplashScreen.hideAsync();
   }, [loaded]);
 
-  if (!loaded && !error) {
-    return null;
-  }
+  if (!loaded) return null;
 
 
   return (

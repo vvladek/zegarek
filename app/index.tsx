@@ -41,9 +41,9 @@ export default function HomeScreen(): JSX.Element {
       source={bgImg}
       style={styles.imageBackground}
     >
-      <StatusBar translucent={true} style="auto" />
+      <StatusBar hidden={true} />
       <View style={styles.container}>
-        <BlurView style={styles.timeContainer} intensity={50} tint="dark">
+        <BlurView style={styles.timeContainer} experimentalBlurMethod={true} >
           <Text style={styles.time}>{time}</Text>
         </BlurView>
       </View>
@@ -64,24 +64,23 @@ const styles = StyleSheet.create({
     height: "100%",
     alignItems: "flex-end",
     justifyContent: "flex-end",
-    padding: 50,
+    padding: 40,
   },
   timeContainer: {
-    width: SCREEN_WIDTH / 3,
+    width: SCREEN_WIDTH / 3.25,
     aspectRatio: 2 / 1,
     alignItems: "center",
     justifyContent: "center",
     overflow: "hidden",
-    borderRadius: 25,
+    borderRadius: 20,
   },
   time: {
     width: "100%",
     textAlign: "center",
     fontFamily: "MontserratBold",
     fontSize: SCREEN_WIDTH / 12,
-    fontWeight: "bold",
     color: "#ffffff",
-    textShadowColor: "#000000",
-    textShadowRadius: 25,
-  },
+    textShadowColor: "#444444",
+    textShadowRadius: 20,
+  }
 });
