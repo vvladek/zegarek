@@ -43,6 +43,7 @@ export default function HomeScreen(): JSX.Element {
     >
       <StatusBar hidden={true} />
       <View style={styles.container}>
+        {/* @ts-ignore */}
         <BlurView style={styles.timeContainer} experimentalBlurMethod={true} >
           <Text style={styles.time}>{time}</Text>
         </BlurView>

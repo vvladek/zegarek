@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
+import { ContextProvider } from "@/context/ContextProvider";
 import { Stack } from "expo-router";
 
 
@@ -21,6 +22,8 @@ export default function RootLayout(): JSX.Element | null {
 
 
   return (
-    <Stack screenOptions={{ headerShown: false }} />
+    <ContextProvider>
+      <Stack screenOptions={{ headerShown: false }} />
+    </ContextProvider>
   );
 }
