@@ -3,6 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { BlurView } from "expo-blur";
 import { useEffect, useState } from "react";
 import { backgrounds } from "@/constants/backgrounds";
+import { DayNightDial, KindergartenDial, MotherDial, TimeDial } from "@/components";
 
 
 
@@ -37,35 +38,34 @@ export default function HomeScreen(): JSX.Element {
 
 
   return (
-    <ImageBackground
-      source={bgImg}
-      style={styles.imageBackground}
-    >
-      <StatusBar hidden={true} />
-      <View style={styles.container}>
-        {/* @ts-ignore */}
-        <BlurView style={styles.timeContainer} experimentalBlurMethod={true} >
-          <Text style={styles.time}>{time}</Text>
-        </BlurView>
-      </View>
-    </ImageBackground>
+    <View style={styles.container}>
+      <DayNightDial width={SCREEN_WIDTH / 2} height={SCREEN_HEIGHT / 2}/>
+      <KindergartenDial />
+      <MotherDial />
+      <TimeDial />
+    </View>
+    // <ImageBackground
+    //   source={bgImg}
+    //   style={styles.imageBackground}
+    // >
+    //   <StatusBar hidden={true} />
+    //   <View style={styles.container}>
+    //     {/* @ts-ignore */}
+    //     <BlurView style={styles.timeContainer} experimentalBlurMethod={true} >
+    //       <Text style={styles.time}>{time}</Text>
+    //     </BlurView>
+    //   </View>
+    // </ImageBackground>
   );
 }
 
 
 const styles = StyleSheet.create({
-  imageBackground: {
+  container: {
     width: SCREEN_WIDTH,
     height: SCREEN_HEIGHT,
-    position: "absolute",
-    top: 0,
-  },
-  container: {
-    width: "100%",
-    height: "100%",
-    alignItems: "flex-end",
-    justifyContent: "flex-end",
-    padding: 40,
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   timeContainer: {
     width: SCREEN_WIDTH / 3.25,
