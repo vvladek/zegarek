@@ -1,29 +1,39 @@
-import { backgrounds } from "@/constants/backgrounds";
-import { useState } from "react";
-import { ImageBackground, StyleSheet, View, Dimensions, Text, ImageSourcePropType } from "react-native";
+import { BackgroundKey, backgrounds } from "@/constants/backgrounds"
+import { StyleSheet, View } from "react-native"
+import { Image } from "expo-image"
+import { useContext } from "react"
+import { Context } from "@/context/Context"
 
 
 
-export default function DayNightDial({ ...props }): JSX.Element {
+export default function DayNightDial(): JSX.Element {
 
-  const [bgImg, setBgImg] = useState<ImageSourcePropType>(backgrounds.sleeping);
-  
+  const { dayNightDialBg } = useContext(Context) as { dayNightDialBg: BackgroundKey }
+
+
   return (
-    <ImageBackground
-      source={bgImg}
-      style={{width: props.width, height: props.height, ...styles.imageBackground}}
-      resizeMode="center"
-    >
-
-    </ImageBackground>
+    <View style={styles.container}>
+      <Image
+        source={backgrounds[dayNightDialBg]}
+        style={styles.image} 
+        contentFit="contain"
+      />
+    </View>
   )
-};
+}
+
 
 
 const styles = StyleSheet.create({
-  imageBackground: {
-    backgroundColor: "#125B9A",
+  container: {
+    width: "50%",
+    height: "50%",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#125B9A",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
   }
-});
+})

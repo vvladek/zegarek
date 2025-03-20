@@ -1,21 +1,43 @@
-import React, { createContext, useState, ReactNode } from "react";
+import React, { useState, ReactNode } from "react"
+import { Context } from "./Context"
 
 
-interface ContextProps {
-  exampleValue: string;
-  setExampleValue: React.Dispatch<React.SetStateAction<string>>;
-};
+
+export function ContextProvider({ children }: { children: ReactNode }) {
+
+  const [state, setState] = useState<{
+    time: string;
+    dayNightDialBg: string;
+    kindergartenDialBg: string;
+    motherDialBg: string;
+  }>({
+    time: "00:00",
+    dayNightDialBg: "night",
+    kindergartenDialBg: "doubleDoorClosed",
+    motherDialBg: "sleepingKoala"
+  })
 
 
-const Context = createContext<ContextProps | undefined>(undefined);
+  function setTime(time: string): void {
+    setState((prevState) => ({ ...prevState, time }))
+  }
 
+  function setDayNightDialBg(bgImg: string): void {
+    setState((prevState) => ({ ...prevState, bgImg }))
+  }
 
-export function ContextProvider ({ children }: Readonly<{ children: ReactNode }>) {
-  const [exampleValue, setExampleValue] = useState<string>("default value");
+  function setKindergartenDialBg(bgImg: string): void {
+    setState((prevState) => ({ ...prevState, bgImg }))
+  }
+
+  function setMotherDialBg(bgImg: string): void {
+    setState((prevState) => ({ ...prevState, bgImg }))
+  }
+
 
   return (
-    <Context.Provider value={{ exampleValue, setExampleValue }}>
+    <Context.Provider value={{ ...state, setTime, setDayNightDialBg, setKindergartenDialBg, setMotherDialBg }}>
       {children}
     </Context.Provider>
-  );
-};
+  )
+}

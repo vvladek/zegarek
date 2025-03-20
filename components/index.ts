@@ -1,7 +1,7 @@
-import DayNightDial from "./DayNightDial";
-import KindergartenDial from "./KindergartenDial";
-import MotherDial from "./MotherDial";
-import TimeDial from "./TimeDial";
+import DayNightDial from "./DayNightDial"
+import KindergartenDial from "./KindergartenDial"
+import MotherDial from "./MotherDial"
+import TimeDial from "./TimeDial"
 
 
 
