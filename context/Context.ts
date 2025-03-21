@@ -8,9 +8,9 @@ export interface IContext {
   kindergartenDialBg: string;
   motherDialBg: string;
   setTime: (time: string) => void;
-  setDayNightDialBg: (bgImg: string) => void;
-  setKindergartenDialBg: (bgImg: string) => void;
-  setMotherDialBg: (bgImg: string) => void;
+  setDayNightDialBg: (dayNightDialBg: string) => void;
+  setKindergartenDialBg: (kindergartenDialBg: string) => void;
+  setMotherDialBg: (motherDialBg: string) => void;
 }
 
 export const Context = createContext<IContext>({
