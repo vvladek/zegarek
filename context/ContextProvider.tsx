@@ -22,16 +22,16 @@ export function ContextProvider({ children }: { children: ReactNode }) {
     setState((prevState) => ({ ...prevState, time }))
   }
 
-  function setDayNightDialBg(bgImg: string): void {
-    setState((prevState) => ({ ...prevState, bgImg }))
+  function setDayNightDialBg(dayNightDialBg: string): void {
+    setState((prevState) => ({ ...prevState, dayNightDialBg }))
   }
 
-  function setKindergartenDialBg(bgImg: string): void {
-    setState((prevState) => ({ ...prevState, bgImg }))
+  function setKindergartenDialBg(kindergartenDialBg: string): void {
+    setState((prevState) => ({ ...prevState, kindergartenDialBg }))
   }
 
-  function setMotherDialBg(bgImg: string): void {
-    setState((prevState) => ({ ...prevState, bgImg }))
+  function setMotherDialBg(motherDialBg: string): void {
+    setState((prevState) => ({ ...prevState, motherDialBg }))
   }
 
 
