@@ -26,8 +26,8 @@ export default function useDialsUpdateTimer() {
       }
       else {
         setDayNightDialBg("sun")
-        setMotherDialBg((day < 6 && hours > 8 && hours < 17) ? "workingCat" : "playingCat")
-        setKindergartenDialBg((day < 6 && hours > 6 && hours < 17) ? "doubleDoorOpen" : "doubleDoorClosed")
+        setMotherDialBg((day && day < 6 && hours > 8 && hours < 17) ? "workingCat" : "playingCat")
+        setKindergartenDialBg((day && day < 6 && hours > 6 && hours < 17) ? "doubleDoorOpen" : "doubleDoorClosed")
       }
     }
 
